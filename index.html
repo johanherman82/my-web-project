@@ -1,279 +1,847 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Luminary is a modern, interactive design system studio for testing color harmonies, typography scales, and responsive UI components.">
-  <title>Luminary — Interactive Design System &amp; Component Studio</title>
+  <meta name="description" content="Olav &amp; Jack’s Haberdashery — Purveyors of fine Nordic tailoring goods, hand-forged shears, natural horn buttons, pure wool threads, and artisanal craft notions.">
+  <meta name="keywords" content="haberdashery, tailoring notions, horn buttons, tailor shears, nordic craft, wool thread, bespoke tailoring">
+  <meta name="author" content="Olav &amp; Jack’s Haberdashery">
+  <title>Olav &amp; Jack’s Haberdashery — Fine Nordic Tailoring &amp; Craft Goods</title>
+  
+  <!-- Favicon / Brand Symbol -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23191c1e'/><path d='M10 8 L22 24 M22 8 L10 24' stroke='%23f9f9f8' stroke-width='2.5' stroke-linecap='round'/><circle cx='16' cy='16' r='3.5' fill='%23b8860b'/></svg>">
+  
+  <!-- Google Fonts: Cormorant Garamond (Editorial Nordic Serif) & Plus Jakarta Sans (Clean Modernist) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="nordic-light-theme">
+  <!-- Announcement Bar -->
+  <aside class="announcement-bar" id="announcement-bar" aria-label="Store Announcement">
+    <div class="container announcement-inner">
+      <div class="announcement-message">
+        <span class="announcement-badge">Nordic Dispatch</span>
+        <p>Complimentary express shipping across Europe on orders over <span class="free-shipping-threshold">€120</span> &bull; Worldwide carbon-neutral delivery</p>
+      </div>
+      <div class="announcement-controls">
+        <div class="currency-selector" aria-label="Select Currency">
+          <label for="currency-select" class="sr-only">Currency</label>
+          <select id="currency-select" class="currency-dropdown">
+            <option value="EUR">EUR (€)</option>
+            <option value="USD">USD ($)</option>
+            <option value="GBP">GBP (£)</option>
+            <option value="NOK">NOK (kr)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Site Header -->
   <header class="site-header" id="site-header">
     <div class="container header-inner">
-      <a href="#hero" class="brand-link" id="brand-link" aria-label="Luminary Home">
-        <div class="brand-symbol" aria-hidden="true">
-          <span class="symbol-core"></span>
+      <!-- Mobile Menu Toggle Button -->
+      <button type="button" class="btn-icon mobile-menu-toggle" id="mobile-menu-btn" aria-label="Open Navigation Menu" aria-expanded="false" aria-controls="main-nav">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- Brand Logo -->
+      <a href="#hero" class="brand-link" id="brand-link" aria-label="Olav &amp; Jack’s Haberdashery Home">
+        <div class="brand-crest" aria-hidden="true">
+          <svg class="crest-svg" width="28" height="28" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="4" fill="#191c1e"/>
+            <path d="M9 8L23 24M23 8L9 24" stroke="#ffffff" stroke-width="1.75" stroke-linecap="round"/>
+            <circle cx="16" cy="16" r="3.5" fill="#b8860b"/>
+            <circle cx="16" cy="7" r="1.5" fill="#ffffff"/>
+            <circle cx="16" cy="25" r="1.5" fill="#ffffff"/>
+          </svg>
         </div>
-        <span class="brand-name">Luminary</span>
+        <div class="brand-text-group">
+          <span class="brand-title">Olav &amp; Jack’s</span>
+          <span class="brand-tagline">Haberdashery &bull; Est. 1928</span>
+        </div>
       </a>
 
+      <!-- Main Navigation -->
       <nav class="main-nav" id="main-nav" aria-label="Primary Navigation">
         <ul class="nav-list">
-          <li><a href="#tokens-section" class="nav-link" id="nav-tokens">Design Tokens</a></li>
-          <li><a href="#playground-section" class="nav-link" id="nav-playground">Playground</a></li>
-          <li><a href="#typography-section" class="nav-link" id="nav-typography">Typography</a></li>
-          <li><a href="#export-section" class="nav-link" id="nav-export">Export</a></li>
+          <li><a href="#shop-section" class="nav-link active" id="nav-all">All Notions</a></li>
+          <li><a href="#shop-section" class="nav-link" data-filter-target="tools" id="nav-tools">Tailoring Tools</a></li>
+          <li><a href="#shop-section" class="nav-link" data-filter-target="buttons" id="nav-buttons">Buttons &amp; Shell</a></li>
+          <li><a href="#shop-section" class="nav-link" data-filter-target="threads" id="nav-threads">Pure Wool &amp; Threads</a></li>
+          <li><a href="#bundle-section" class="nav-link" id="nav-bundle">Atelier Bundles</a></li>
+          <li><a href="#story-section" class="nav-link" id="nav-story">The Atelier</a></li>
         </ul>
       </nav>
 
+      <!-- Header Actions -->
       <div class="header-actions">
-        <button type="button" class="btn btn-icon" id="theme-toggle" aria-label="Toggle color theme">
-          <svg class="theme-icon sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="5"></circle>
-            <line x1="12" y1="1" x2="12" y2="3"></line>
-            <line x1="12" y1="21" x2="12" y2="23"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-            <line x1="1" y1="12" x2="3" y2="12"></line>
-            <line x1="21" y1="12" x2="23" y2="12"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        <!-- Search Trigger -->
+        <button type="button" class="btn-action" id="btn-search-trigger" aria-label="Search Haberdashery Products" title="Search (Press /)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
-          <svg class="theme-icon moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-          </svg>
+          <span class="action-label desktop-only">Search</span>
         </button>
-        <a href="#playground-section" class="btn btn-primary" id="btn-header-cta">Open Studio</a>
+
+        <!-- Wishlist Button -->
+        <button type="button" class="btn-action" id="btn-wishlist-trigger" aria-label="Saved Wishlist Items" title="Saved Items">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <span class="badge-count wishlist-badge" id="wishlist-count">0</span>
+        </button>
+
+        <!-- Cart Button -->
+        <button type="button" class="btn-action btn-cart" id="btn-cart-trigger" aria-label="Open Shopping Bag" aria-haspopup="dialog">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-label-wrap desktop-only">
+            <span class="cart-label">Bag</span>
+            <span class="cart-total-preview" id="header-cart-total">€0.00</span>
+          </span>
+          <span class="badge-count cart-badge" id="cart-count">0</span>
+        </button>
       </div>
     </div>
   </header>
 
+  <!-- Main Content -->
   <main id="main-content">
-    <!-- Hero Section -->
+    <!-- Hero Section: Light Nordic Editorial -->
     <section class="hero-section" id="hero">
-      <div class="container hero-container">
-        <div class="hero-content">
-          <div class="badge-tag" id="hero-badge">Web Design Architecture</div>
-          <h1 class="hero-title">Crafting digital interfaces with precision and clarity</h1>
-          <p class="hero-subtitle">
-            An open-ended design toolkit for fine-tuning fluid typography, calibrated color harmonies, and accessible interface components in real-time.
+      <div class="container hero-layout">
+        <div class="hero-text-col">
+          <div class="kicker-pill" id="hero-kicker">
+            <span class="kicker-dot"></span>
+            <span>Artisanal Tailoring &bull; Copenhagen &amp; Oslo</span>
+          </div>
+          <h1 class="hero-heading">
+            Quiet luxury and enduring craft for the discerning tailor.
+          </h1>
+          <p class="hero-subheading">
+            Olav &amp; Jack’s curates exceptional haberdashery essentials—hand-forged Swedish shears, turned horn buttons, and pure valley wool threads made to outlast seasons.
           </p>
-          <div class="hero-cta-group">
-            <a href="#tokens-section" class="btn btn-primary btn-lg" id="hero-primary-cta">Explore Tokens</a>
-            <a href="#playground-section" class="btn btn-secondary btn-lg" id="hero-secondary-cta">Live Playground</a>
+          <div class="hero-actions">
+            <a href="#shop-section" class="btn btn-dark btn-lg" id="hero-shop-cta">Explore the Collection</a>
+            <a href="#story-section" class="btn btn-outline-dark btn-lg" id="hero-story-cta">The Atelier Story</a>
+          </div>
+
+          <div class="hero-heritage-row">
+            <div class="heritage-item">
+              <span class="heritage-number">1928</span>
+              <span class="heritage-desc">Nordic Guild Heritage</span>
+            </div>
+            <div class="heritage-divider"></div>
+            <div class="heritage-item">
+              <span class="heritage-number">100%</span>
+              <span class="heritage-desc">Natural Raw Fibres</span>
+            </div>
+            <div class="heritage-divider"></div>
+            <div class="heritage-item">
+              <span class="heritage-number">Lifetime</span>
+              <span class="heritage-desc">Blade &amp; Tool Warranty</span>
+            </div>
           </div>
         </div>
 
-        <div class="hero-metrics" id="hero-metrics">
-          <div class="metric-card">
-            <span class="metric-value">100%</span>
-            <span class="metric-label">Semantic HTML5</span>
-          </div>
-          <div class="metric-divider" aria-hidden="true"></div>
-          <div class="metric-card">
-            <span class="metric-value">0kb</span>
-            <span class="metric-label">Framework Runtime</span>
-          </div>
-          <div class="metric-divider" aria-hidden="true"></div>
-          <div class="metric-card">
-            <span class="metric-value">AAA</span>
-            <span class="metric-label">WCAG Contrast</span>
+        <div class="hero-visual-col">
+          <div class="hero-image-card">
+            <!-- Tailored Nordic Studio Illustration Art -->
+            <div class="hero-craft-art">
+              <svg viewBox="0 0 540 420" class="hero-illustration-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Warm linen background plate -->
+                <rect width="540" height="420" rx="8" fill="#f4f3ef"/>
+                <!-- Subtle texture gridlines -->
+                <line x1="40" y1="40" x2="500" y2="40" stroke="#e6e4dc" stroke-width="1" stroke-dasharray="4 4"/>
+                <line x1="40" y1="380" x2="500" y2="380" stroke="#e6e4dc" stroke-width="1" stroke-dasharray="4 4"/>
+                <line x1="40" y1="40" x2="40" y2="380" stroke="#e6e4dc" stroke-width="1" stroke-dasharray="4 4"/>
+                <line x1="500" y1="40" x2="500" y2="380" stroke="#e6e4dc" stroke-width="1" stroke-dasharray="4 4"/>
+                
+                <!-- Tailoring cutting mat & rulers -->
+                <rect x="70" y="80" width="400" height="260" rx="4" fill="#ebe9e2" stroke="#dcd9ce" stroke-width="1.5"/>
+                <line x1="70" y1="130" x2="470" y2="130" stroke="#e0ded4" stroke-width="1"/>
+                <line x1="70" y1="180" x2="470" y2="180" stroke="#e0ded4" stroke-width="1"/>
+                <line x1="70" y1="230" x2="470" y2="230" stroke="#e0ded4" stroke-width="1"/>
+                <line x1="70" y1="280" x2="470" y2="280" stroke="#e0ded4" stroke-width="1"/>
+                
+                <!-- Folded Nordic Wool Fabric Swatch (Slate Blue & Cream) -->
+                <path d="M100 130 C 100 110, 220 100, 240 120 L 230 250 C 210 260, 100 240, 100 220 Z" fill="#384a56" opacity="0.95"/>
+                <path d="M120 125 C 150 115, 230 115, 235 140 L 225 240 C 190 245, 120 230, 120 210 Z" fill="#4d6059" opacity="0.85"/>
+                <path d="M130 145 C 160 135, 210 135, 215 155 L 210 220 C 180 225, 130 215, 130 200 Z" fill="#d9cdb8" opacity="0.9"/>
+                
+                <!-- Hand-Forged Master Tailor Shears -->
+                <g transform="translate(190, 100) rotate(22 100 100)">
+                  <!-- Blades -->
+                  <path d="M50 30 L190 115 L50 70 Z" fill="#1e2226"/>
+                  <path d="M50 70 L190 120 L50 110 Z" fill="#2d3237"/>
+                  <line x1="60" y1="68" x2="185" y2="117" stroke="#8a949d" stroke-width="1.5"/>
+                  <!-- Brass Pivot Bolt -->
+                  <circle cx="105" cy="85" r="9" fill="#b8860b"/>
+                  <circle cx="105" cy="85" r="5" fill="#8f6808"/>
+                  <!-- Handles with Ergonomic Brass loops -->
+                  <path d="M50 30 C 20 20, -10 40, -10 70 C -10 95, 20 100, 45 75 Z" fill="none" stroke="#b8860b" stroke-width="9" stroke-linecap="round"/>
+                  <path d="M50 110 C 20 120, -15 110, -15 145 C -15 175, 20 180, 50 145 Z" fill="none" stroke="#b8860b" stroke-width="9" stroke-linecap="round"/>
+                </g>
+                
+                <!-- Wooden Spools of Spun Wool Thread -->
+                <g transform="translate(350, 150)">
+                  <rect x="0" y="5" width="44" height="60" rx="3" fill="#9e4736"/>
+                  <ellipse cx="22" cy="5" rx="22" ry="8" fill="#d1b89d"/>
+                  <ellipse cx="22" cy="65" rx="22" ry="8" fill="#a4886b"/>
+                  <line x1="5" y1="20" x2="39" y2="20" stroke="#b85a49" stroke-width="1"/>
+                  <line x1="5" y1="35" x2="39" y2="35" stroke="#b85a49" stroke-width="1"/>
+                  <line x1="5" y1="50" x2="39" y2="50" stroke="#b85a49" stroke-width="1"/>
+                </g>
+                
+                <g transform="translate(410, 175)">
+                  <rect x="0" y="5" width="40" height="50" rx="3" fill="#3c5249"/>
+                  <ellipse cx="20" cy="5" rx="20" ry="7" fill="#d1b89d"/>
+                  <ellipse cx="20" cy="55" rx="20" ry="7" fill="#a4886b"/>
+                  <!-- Trailing thread curve -->
+                  <path d="M20 55 C 30 75, -20 90, -40 100" fill="none" stroke="#3c5249" stroke-width="1.5" stroke-dasharray="2 1"/>
+                </g>
+                
+                <!-- Natural Horn Buttons Scattered -->
+                <g transform="translate(290, 260)">
+                  <!-- Button 1 -->
+                  <circle cx="20" cy="20" r="16" fill="#332a24" stroke="#524338" stroke-width="1.5"/>
+                  <circle cx="15" cy="17" r="1.5" fill="#f4f3ef"/>
+                  <circle cx="25" cy="17" r="1.5" fill="#f4f3ef"/>
+                  <circle cx="15" cy="23" r="1.5" fill="#f4f3ef"/>
+                  <circle cx="25" cy="23" r="1.5" fill="#f4f3ef"/>
+                  <line x1="15" y1="17" x2="25" y2="23" stroke="#f4f3ef" stroke-width="1"/>
+                  <line x1="25" y1="17" x2="15" y2="23" stroke="#f4f3ef" stroke-width="1"/>
+                  
+                  <!-- Button 2 (Mother-of-pearl) -->
+                  <circle cx="65" cy="35" r="13" fill="#f0ebe1" stroke="#ded5c4" stroke-width="1.5"/>
+                  <circle cx="61" cy="32" r="1.2" fill="#524338"/>
+                  <circle cx="69" cy="32" r="1.2" fill="#524338"/>
+                  <circle cx="61" cy="38" r="1.2" fill="#524338"/>
+                  <circle cx="69" cy="38" r="1.2" fill="#524338"/>
+                  
+                  <!-- Brass Thimble -->
+                  <path d="M95 50 L115 50 L110 25 C 108 20, 102 20, 100 25 Z" fill="#b8860b" stroke="#8f6808" stroke-width="1"/>
+                </g>
+                
+                <!-- Tailor's French Curve / Acrylic Ruler Outline -->
+                <path d="M80 290 Q 140 330 220 310 T 360 340" fill="none" stroke="#b8860b" stroke-width="1.5" stroke-dasharray="3 3"/>
+              </svg>
+            </div>
+
+            <div class="hero-badge-overlay">
+              <div class="overlay-title">Hand-Curated Edition</div>
+              <div class="overlay-desc">Autumn / Winter Atelier Stock Available</div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Tokens Section -->
-    <section class="section tokens-section" id="tokens-section">
+    <!-- Value Pillars / Nordic Commitments -->
+    <section class="pillars-section" aria-label="Our Commitments">
       <div class="container">
-        <div class="section-header">
-          <span class="section-kicker">Foundation</span>
-          <h2 class="section-title">Harmonious Color Systems</h2>
-          <p class="section-desc">Select a curated palette or customize your primary hue to generate an accessible token scale with live contrast verification.</p>
-        </div>
-
-        <div class="palette-picker" id="palette-presets">
-          <button type="button" class="palette-chip active" data-preset="slate" id="preset-slate">
-            <span class="chip-color" style="background-color: #3b82f6;"></span>
-            <span class="chip-title">Nordic Slate</span>
-          </button>
-          <button type="button" class="palette-chip" data-preset="emerald" id="preset-emerald">
-            <span class="chip-color" style="background-color: #10b981;"></span>
-            <span class="chip-title">Forest Emerald</span>
-          </button>
-          <button type="button" class="palette-chip" data-preset="amber" id="preset-amber">
-            <span class="chip-color" style="background-color: #f59e0b;"></span>
-            <span class="chip-title">Warm Amber</span>
-          </button>
-          <button type="button" class="palette-chip" data-preset="rose" id="preset-rose">
-            <span class="chip-color" style="background-color: #f43f5e;"></span>
-            <span class="chip-title">Nordic Crimson</span>
-          </button>
-        </div>
-
-        <div class="token-controls">
-          <div class="control-card">
-            <div class="control-header">
-              <label for="hue-slider" class="control-label">Primary Hue Angle (<span id="hue-display">217°</span>)</label>
-              <button type="button" class="btn-text" id="btn-random-hue">Randomize</button>
+        <div class="pillars-grid">
+          <div class="pillar-card">
+            <div class="pillar-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
             </div>
-            <input type="range" min="0" max="360" value="217" class="slider" id="hue-slider" aria-label="Adjust Primary Hue">
+            <div class="pillar-content">
+              <h3 class="pillar-title">Lifetime Craft Warranty</h3>
+              <p class="pillar-text">Forged blades and hand tools guaranteed for decades of reliable cutting and sewing.</p>
+            </div>
           </div>
 
-          <div class="control-card">
-            <div class="control-header">
-              <label for="radius-slider" class="control-label">Border Radius (<span id="radius-display">12px</span>)</label>
+          <div class="pillar-card">
+            <div class="pillar-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                <path d="M2 12h20"></path>
+              </svg>
             </div>
-            <input type="range" min="0" max="24" value="12" class="slider" id="radius-slider" aria-label="Adjust Border Radius">
+            <div class="pillar-content">
+              <h3 class="pillar-title">100% Traceable Provenance</h3>
+              <p class="pillar-text">Ethically sourced horns, Swedish high-carbon steel, and certified organic Nordic wool.</p>
+            </div>
           </div>
-        </div>
 
-        <div class="swatches-grid" id="swatches-grid">
-          <!-- Swatches dynamically populated via app.js -->
+          <div class="pillar-card">
+            <div class="pillar-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                <rect x="1" y="3" width="15" height="13"></rect>
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                <circle cx="18.5" cy="18.5" r="2.5"></circle>
+              </svg>
+            </div>
+            <div class="pillar-content">
+              <h3 class="pillar-title">Plastic-Free Packaging</h3>
+              <p class="pillar-text">Recycled kraft parcels sealed with natural gummed paper and unbleached cotton cord.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Playground Section -->
-    <section class="section playground-section" id="playground-section">
+    <!-- Main Shop Catalog Section -->
+    <section class="section shop-section" id="shop-section">
       <div class="container">
-        <div class="section-header">
-          <span class="section-kicker">Interactive Studio</span>
-          <h2 class="section-title">Live Component Playground</h2>
-          <p class="section-desc">Experience design tokens in action across functional, responsive interface primitives.</p>
+        <!-- Section Header -->
+        <div class="section-header-row">
+          <div class="header-titles">
+            <span class="section-kicker">Curated Catalog</span>
+            <h2 class="section-title">Haberdashery Essentials</h2>
+            <p class="section-description">Select from our benchmark tailoring instruments, organic notions, and heirloom accessories.</p>
+          </div>
+
+          <!-- Sorting & Count -->
+          <div class="shop-toolbar-meta">
+            <span class="product-count-label" id="product-count-display">Showing 9 of 9 items</span>
+            <div class="sort-control">
+              <label for="sort-select" class="sr-only">Sort Products</label>
+              <select id="sort-select" class="sort-dropdown">
+                <option value="featured">Featured / Atelier Choice</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Highest Rated</option>
+                <option value="name">Name (A &ndash; Z)</option>
+              </select>
+            </div>
+          </div>
         </div>
 
-        <div class="playground-layout">
-          <div class="playground-viewport">
-            <div class="component-card preview-card">
-              <div class="card-header">
-                <span class="status-dot"></span>
-                <span class="preview-tag">Interactive Component</span>
-              </div>
-              <h3 class="preview-title" id="preview-sample-heading">Modular Workspace Engine</h3>
-              <p class="preview-body">
-                Adjust the design controls above to watch corner radii, color depths, and typography dynamically recalculate in real time.
+        <!-- Filter Navigation Pills -->
+        <div class="filter-bar" id="filter-bar" role="tablist" aria-label="Product Categories">
+          <button type="button" class="filter-pill active" data-category="all" role="tab" aria-selected="true">
+            All Notions
+          </button>
+          <button type="button" class="filter-pill" data-category="tools" role="tab" aria-selected="false">
+            Tailoring Tools
+          </button>
+          <button type="button" class="filter-pill" data-category="buttons" role="tab" aria-selected="false">
+            Buttons &amp; Shell
+          </button>
+          <button type="button" class="filter-pill" data-category="threads" role="tab" aria-selected="false">
+            Threads &amp; Wool
+          </button>
+          <button type="button" class="filter-pill" data-category="accessories" role="tab" aria-selected="false">
+            Accessories &amp; Silk
+          </button>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="product-grid" id="product-grid" aria-live="polite">
+          <!-- Products dynamically injected via app.js -->
+        </div>
+
+        <!-- No Results Fallback -->
+        <div class="no-results" id="no-results" style="display: none;">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <line x1="8" y1="11" x2="14" y2="11"></line>
+          </svg>
+          <h3>No matching items found</h3>
+          <p>Try resetting the category filter or searching for another term.</p>
+          <button type="button" class="btn btn-secondary" id="btn-reset-filters">Reset All Filters</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Custom Bundle / Atelier Starter Kit Builder -->
+    <section class="section bundle-section" id="bundle-section">
+      <div class="container">
+        <div class="bundle-card">
+          <div class="bundle-header">
+            <div class="bundle-intro">
+              <span class="section-kicker">Interactive Atelier Configurator</span>
+              <h2 class="bundle-title">Build Your Bespoke Haberdashery Kit</h2>
+              <p class="bundle-desc">
+                Select your preferred shears, button set, and hand-sewing thread to create a personalized workshop set with an automatic <strong>15% bundle saving</strong>.
               </p>
+            </div>
+            <div class="bundle-badge">
+              <span>Save 15% on Kits</span>
+            </div>
+          </div>
 
-              <div class="interactive-controls-group">
-                <button type="button" class="btn btn-primary" id="demo-btn-primary">Primary Action</button>
-                <button type="button" class="btn btn-secondary" id="demo-btn-secondary">Secondary Action</button>
-                <button type="button" class="btn btn-outline" id="demo-btn-outline">Outline</button>
+          <div class="bundle-builder-grid">
+            <!-- Step 1: Shears Selection -->
+            <div class="bundle-step-col">
+              <div class="step-label">
+                <span class="step-num">1</span>
+                <span class="step-title">Select Cutting Tool</span>
               </div>
-
-              <div class="form-preview-row">
-                <div class="form-group">
-                  <label for="demo-input-name" class="form-label">Project Identifier</label>
-                  <input type="text" id="demo-input-name" class="form-input" value="luminary-core-v1" placeholder="Enter identifier">
-                </div>
-                <div class="form-group">
-                  <label for="demo-select-env" class="form-label">Deployment Region</label>
-                  <select id="demo-select-env" class="form-select">
-                    <option value="eu-central">eu-central-1 (Frankfurt)</option>
-                    <option value="us-east">us-east-1 (N. Virginia)</option>
-                    <option value="ap-southeast">ap-southeast-1 (Singapore)</option>
-                  </select>
-                </div>
+              <div class="bundle-options-group" id="bundle-shears-group">
+                <label class="bundle-radio-card active">
+                  <input type="radio" name="bundle-shears" value="shears-105" data-price="135" checked>
+                  <div class="radio-content">
+                    <span class="opt-name">Master Tailor’s Forged Shears (10.5")</span>
+                    <span class="opt-price">€135</span>
+                  </div>
+                </label>
+                <label class="bundle-radio-card">
+                  <input type="radio" name="bundle-shears" value="cedar-clapper-kit" data-price="42">
+                  <div class="radio-content">
+                    <span class="opt-name">Cedar Clapper &amp; Precision Chalk Kit</span>
+                    <span class="opt-price">€42</span>
+                  </div>
+                </label>
               </div>
+            </div>
 
-              <div class="feedback-banner" id="feedback-banner">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                </svg>
-                <span>Live token synchronization active &bull; Clean semantic output</span>
+            <!-- Step 2: Buttons Selection -->
+            <div class="bundle-step-col">
+              <div class="step-label">
+                <span class="step-num">2</span>
+                <span class="step-title">Select Fasteners</span>
+              </div>
+              <div class="bundle-options-group" id="bundle-buttons-group">
+                <label class="bundle-radio-card active">
+                  <input type="radio" name="bundle-buttons" value="horn-buttons-24" data-price="48" checked>
+                  <div class="radio-content">
+                    <span class="opt-name">Norwegian Natural Horn Set (24-pc)</span>
+                    <span class="opt-price">€48</span>
+                  </div>
+                </label>
+                <label class="bundle-radio-card">
+                  <input type="radio" name="bundle-buttons" value="mop-buttons-18" data-price="36">
+                  <div class="radio-content">
+                    <span class="opt-name">Mother-of-Pearl Shirt Set (18-pc)</span>
+                    <span class="opt-price">€36</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Step 3: Thread & Accs Selection -->
+            <div class="bundle-step-col">
+              <div class="step-label">
+                <span class="step-num">3</span>
+                <span class="step-title">Select Thread / Notions</span>
+              </div>
+              <div class="bundle-options-group" id="bundle-threads-group">
+                <label class="bundle-radio-card active">
+                  <input type="radio" name="bundle-threads" value="wool-thread-trio" data-price="28" checked>
+                  <div class="radio-content">
+                    <span class="opt-name">Gudbrandsdalen Pure Wool Spool Trio</span>
+                    <span class="opt-price">€28</span>
+                  </div>
+                </label>
+                <label class="bundle-radio-card">
+                  <input type="radio" name="bundle-threads" value="leather-tape-150" data-price="54">
+                  <div class="radio-content">
+                    <span class="opt-name">Saddle Leather Retractable Tape Measure</span>
+                    <span class="opt-price">€54</span>
+                  </div>
+                </label>
               </div>
             </div>
           </div>
 
-          <div class="playground-code">
-            <div class="code-header">
-              <span class="code-title">Computed CSS Variables</span>
-              <button type="button" class="btn btn-sm btn-secondary" id="copy-code-btn">Copy CSS</button>
+          <!-- Bundle Summary Bar -->
+          <div class="bundle-summary-bar">
+            <div class="bundle-pricing">
+              <div class="price-row-original">
+                <span class="price-strikethrough" id="bundle-original-price">€211.00</span>
+                <span class="bundle-savings-tag" id="bundle-savings-tag">Save €31.65 (15%)</span>
+              </div>
+              <div class="price-row-bundle">
+                <span class="bundle-label">Bundle Total:</span>
+                <span class="bundle-final-price" id="bundle-final-price">€179.35</span>
+              </div>
             </div>
-            <pre class="code-block"><code id="code-output">:root {
-  --primary-hue: 217;
-  --color-primary: hsl(217, 90%, 56%);
-  --color-primary-light: hsl(217, 90%, 68%);
-  --color-primary-dark: hsl(217, 90%, 42%);
-  --radius-custom: 12px;
-}</code></pre>
+            <button type="button" class="btn btn-dark btn-lg" id="btn-add-bundle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+              </svg>
+              <span>Add Complete Kit to Bag</span>
+            </button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Typography Section -->
-    <section class="section typography-section" id="typography-section">
+    <!-- Atelier Story & Craft Heritage Section -->
+    <section class="section story-section" id="story-section">
       <div class="container">
-        <div class="section-header">
-          <span class="section-kicker">Typography</span>
-          <h2 class="section-title">Scalable Type Scale</h2>
-          <p class="section-desc">Designed with calibrated optical sizes and balanced tracking for high readability.</p>
-        </div>
+        <div class="story-grid">
+          <div class="story-content">
+            <span class="section-kicker">Our Heritage &bull; Est. 1928</span>
+            <h2 class="story-heading">Slow craft in an age of disposable fast fashion.</h2>
+            <p class="story-paragraph">
+              Founded in 1928 along the historic docks of Copenhagen by master tailors Olav Lindström and Jack Hesselberg, our haberdashery remains dedicated to one unyielding principle: tailoring tools and garment notions should last a lifetime.
+            </p>
+            <p class="story-paragraph">
+              Every pair of shears is hand-ground on wet sandstone wheels in Eskilstuna; each horn button is turned individually to preserve its natural grain; and our wool threads are spun from hardy valley sheep that have grazed Scandinavian highlands for generations.
+            </p>
 
-        <div class="typography-grid">
-          <div class="type-row">
-            <span class="type-meta">Display / 40px</span>
-            <div class="type-specimen type-display">Fluid typography designed for scale and clarity</div>
+            <div class="craft-points">
+              <div class="craft-point">
+                <div class="point-bullet"></div>
+                <div>
+                  <h4 class="point-title">Ethical Sourcing</h4>
+                  <p class="point-desc">Natural horn, bone, shell, and timber gathered exclusively under strict Nordic ecological quotas.</p>
+                </div>
+              </div>
+              <div class="craft-point">
+                <div class="point-bullet"></div>
+                <div>
+                  <h4 class="point-title">Repair &amp; Restoration</h4>
+                  <p class="point-desc">Send your shears back to our Copenhagen workshop anytime for complementary edge regrinding and recalibration.</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="type-row">
-            <span class="type-meta">Heading / 28px</span>
-            <div class="type-specimen type-heading">Semantic structures prioritize information hierarchy</div>
-          </div>
-          <div class="type-row">
-            <span class="type-meta">Subheading / 20px</span>
-            <div class="type-specimen type-subheading">High contrast and balanced line heights maximize reading comfort</div>
-          </div>
-          <div class="type-row">
-            <span class="type-meta">Body / 16px</span>
-            <div class="type-specimen type-body">
-              Every interface is built upon a foundation of clear proportions, thoughtful spacing, and accessible contrast ratios. By stripping away extraneous ornament, the content itself communicates with maximum impact.
+
+          <div class="story-quote-card">
+            <blockquote class="story-quote">
+              &ldquo;When you cut wool with properly forged shears, you don&rsquo;t simply separate fabric &mdash; you honor the hours of tailoring that will follow.&rdquo;
+            </blockquote>
+            <div class="quote-author-group">
+              <div class="author-avatar" aria-hidden="true">OJ</div>
+              <div class="author-info">
+                <span class="author-name">Olav Lindström</span>
+                <span class="author-role">Co-Founder &amp; Master Cutter (1902&ndash;1984)</span>
+              </div>
+            </div>
+
+            <div class="atelier-stamp" aria-hidden="true">
+              <svg width="90" height="90" viewBox="0 0 100 100" fill="none">
+                <circle cx="50" cy="50" r="46" stroke="#191c1e" stroke-width="1.5" stroke-dasharray="3 2"/>
+                <path d="M 50 14 A 36 36 0 0 1 86 50 A 36 36 0 0 1 50 86 A 36 36 0 0 1 14 50 A 36 36 0 0 1 50 14" id="stamp-curve" fill="none"/>
+                <text font-size="7.5" font-family="Plus Jakarta Sans" fill="#191c1e" letter-spacing="2">
+                  <textPath href="#stamp-curve" startOffset="5%">
+                    OLAV &amp; JACK'S HABERDASHERY &bull; COPENHAGEN &bull;
+                  </textPath>
+                </text>
+                <circle cx="50" cy="50" r="18" fill="#f4f3ef" stroke="#191c1e" stroke-width="1"/>
+                <text x="50" y="53" text-anchor="middle" font-family="Cormorant Garamond" font-size="12" font-weight="bold" fill="#191c1e">1928</text>
+              </svg>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Export Section -->
-    <section class="section export-section" id="export-section">
+    <!-- Testimonials / Guild Endorsements -->
+    <section class="section testimonials-section" aria-label="Customer Reviews">
       <div class="container">
-        <div class="export-card">
-          <div class="export-header">
-            <div>
-              <span class="section-kicker">Integration</span>
-              <h2 class="export-title">Ready for production</h2>
-              <p class="export-desc">Copy this lightweight CSS foundation directly into your next project.</p>
+        <div class="section-header-center">
+          <span class="section-kicker">Endorsements</span>
+          <h2 class="section-title">Trusted by Master Tailors &amp; Artisans</h2>
+        </div>
+
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="star-rating" aria-label="5 out of 5 stars">
+              ★★★★★
             </div>
-            <button type="button" class="btn btn-primary" id="btn-copy-full-css">Copy Starter Kit</button>
+            <p class="testimonial-quote">
+              &ldquo;The 10.5" forged shears are phenomenal. The balance in the hand is effortless, and they glide through 450gsm heavy Shetland tweed without a millimeter of slip.&rdquo;
+            </p>
+            <div class="testimonial-author">
+              <span class="author-name">Henrik Dahl</span>
+              <span class="author-location">Savile Row &amp; Oslo Atelier</span>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="star-rating" aria-label="5 out of 5 stars">
+              ★★★★★
+            </div>
+            <p class="testimonial-quote">
+              &ldquo;Finding genuine natural horn buttons of this caliber with a subtle matte finish is rare. Olav &amp; Jack’s is the only haberdashery I trust for bespoke suit commissions.&rdquo;
+            </p>
+            <div class="testimonial-author">
+              <span class="author-name">Astrid Lindeblad</span>
+              <span class="author-location">Couture Designer, Stockholm</span>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="star-rating" aria-label="5 out of 5 stars">
+              ★★★★★
+            </div>
+            <p class="testimonial-quote">
+              &ldquo;The saddle leather tape measure and Gudbrandsdalen wool thread trio arrived in stunning plastic-free packaging. Heirloom quality in every single touchpoint.&rdquo;
+            </p>
+            <div class="testimonial-author">
+              <span class="author-name">Marcus Vang</span>
+              <span class="author-location">Bespoke Cordwainer, Aarhus</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter / The Haberdasher's Gazette -->
+    <section class="section newsletter-section" id="newsletter-section">
+      <div class="container">
+        <div class="newsletter-card">
+          <div class="newsletter-content">
+            <span class="section-kicker">The Haberdasher’s Gazette</span>
+            <h2 class="newsletter-title">Receive seasonal craft dispatches &amp; 10% off your first order.</h2>
+            <p class="newsletter-desc">
+              Subscribe for rare vintage deadstock fabric announcements, tailoring techniques, and private restock alerts. Unsubscribe at any time.
+            </p>
+            <form class="newsletter-form" id="newsletter-form" novalidate>
+              <div class="form-input-group">
+                <label for="newsletter-email" class="sr-only">Email Address</label>
+                <input type="email" id="newsletter-email" class="newsletter-input" placeholder="Enter your email address..." required autocomplete="email">
+                <button type="submit" class="btn btn-dark" id="btn-newsletter-submit">Subscribe</button>
+              </div>
+              <span class="form-help-text" id="newsletter-status" role="status"></span>
+            </form>
           </div>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- Site Footer -->
   <footer class="site-footer" id="site-footer">
     <div class="container footer-inner">
-      <div class="footer-brand">
-        <div class="brand-symbol small" aria-hidden="true">
-          <span class="symbol-core"></span>
+      <div class="footer-top-row">
+        <!-- Brand & Description -->
+        <div class="footer-col footer-col-brand">
+          <div class="brand-link">
+            <div class="brand-crest small" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+                <rect width="32" height="32" rx="4" fill="#191c1e"/>
+                <path d="M9 8L23 24M23 8L9 24" stroke="#ffffff" stroke-width="1.75" stroke-linecap="round"/>
+                <circle cx="16" cy="16" r="3.5" fill="#b8860b"/>
+              </svg>
+            </div>
+            <span class="brand-title">Olav &amp; Jack’s</span>
+          </div>
+          <p class="footer-bio">
+            Artisanal haberdashers and purveyors of fine Nordic tailoring essentials since 1928. Handcrafted tools and natural notions for craftspeople worldwide.
+          </p>
+          <div class="footer-contact-info">
+            <p><strong>Copenhagen Atelier:</strong> Kronprinsensgade 14, 1114 København</p>
+            <p><strong>Oslo Workshop:</strong> Riddervolds gate 8, 0258 Oslo</p>
+          </div>
         </div>
-        <span class="footer-text">&copy; 2026 Luminary Studio. Crafted with vanilla HTML, CSS, and JavaScript.</span>
+
+        <!-- Links Column 1: Collections -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Collections</h4>
+          <ul class="footer-links">
+            <li><a href="#shop-section" data-filter-target="tools">Tailoring Tools &amp; Shears</a></li>
+            <li><a href="#shop-section" data-filter-target="buttons">Natural Horn &amp; Shell Buttons</a></li>
+            <li><a href="#shop-section" data-filter-target="threads">Pure Spun Wool Threads</a></li>
+            <li><a href="#shop-section" data-filter-target="accessories">Silk &amp; Linen Accessories</a></li>
+            <li><a href="#bundle-section">Custom Workshop Kits</a></li>
+          </ul>
+        </div>
+
+        <!-- Links Column 2: Atelier -->
+        <div class="footer-col">
+          <h4 class="footer-heading">The Atelier</h4>
+          <ul class="footer-links">
+            <li><a href="#story-section">Philosophy &amp; 1928 Heritage</a></li>
+            <li><a href="#story-section">Lifetime Tool Sharpening</a></li>
+            <li><a href="#story-section">Ethical Raw Materials</a></li>
+            <li><a href="#story-section">Tailor Guild Partnerships</a></li>
+            <li><a href="#newsletter-section">The Haberdasher&rsquo;s Gazette</a></li>
+          </ul>
+        </div>
+
+        <!-- Links Column 3: Customer Care -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Customer Care</h4>
+          <ul class="footer-links">
+            <li><a href="#announcement-bar" id="footer-shipping-link">Shipping &amp; Carbon Neutral Delivery</a></li>
+            <li><a href="#announcement-bar" id="footer-returns-link">30-Day Nordic Craft Guarantee</a></li>
+            <li><a href="#story-section" id="footer-care-link">Tool Maintenance Guide</a></li>
+            <li><a href="mailto:atelier@olavandjacks.com">Contact Atelier Concierge</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="footer-links">
-        <a href="https://github.com/johanherman82/my-web-project" class="footer-link" id="footer-github" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
-        <a href="#hero" class="footer-link" id="footer-back-top">Back to Top</a>
+
+      <div class="footer-bottom-row">
+        <p class="copyright-text">
+          &copy; 1928&ndash;2026 Olav &amp; Jack’s Haberdashery A/S. All rights reserved. Crafted with vanilla HTML, CSS, &amp; JavaScript.
+        </p>
+        <div class="footer-meta-links">
+          <a href="#hero" class="back-to-top" id="btn-back-to-top">
+            <span>Back to top</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="19" x2="12" y2="5"></line>
+              <polyline points="5 12 12 5 19 12"></polyline>
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   </footer>
 
-  <div class="toast" id="toast" role="status" aria-live="polite" aria-hidden="true">
-    <span id="toast-message">Copied to clipboard</span>
+  <!-- Slide-out Shopping Cart Drawer -->
+  <div class="cart-drawer-overlay" id="cart-drawer-overlay" aria-hidden="true"></div>
+  <aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-label="Shopping Bag" aria-hidden="true">
+    <div class="cart-drawer-header">
+      <div class="cart-title-row">
+        <h3 class="cart-title">Your Atelier Bag</h3>
+        <span class="cart-items-counter" id="cart-drawer-count">(0 items)</span>
+      </div>
+      <button type="button" class="btn-close" id="btn-close-cart" aria-label="Close Shopping Bag">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Free Shipping Progress Tracker -->
+    <div class="shipping-tracker" id="shipping-tracker">
+      <div class="tracker-message" id="tracker-message">
+        Add <strong id="tracker-remaining">€120.00</strong> more to qualify for complimentary express shipping!
+      </div>
+      <div class="tracker-bar">
+        <div class="tracker-progress" id="tracker-progress" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    <!-- Cart Items Scrollable Container -->
+    <div class="cart-drawer-items" id="cart-drawer-items">
+      <!-- Injected dynamically via app.js -->
+    </div>
+
+    <!-- Cart Drawer Footer / Checkout Summary -->
+    <div class="cart-drawer-footer" id="cart-drawer-footer">
+      <!-- Promo Code Section -->
+      <div class="promo-section">
+        <div class="promo-form" id="promo-form">
+          <input type="text" id="promo-input" class="promo-input" placeholder="Promo code (e.g. NORDIC10)" uppercase>
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-apply-promo">Apply</button>
+        </div>
+        <div class="promo-applied-tag" id="promo-applied-tag" style="display: none;">
+          <span id="promo-code-name">NORDIC10</span>
+          <span class="promo-discount-val">(-10%)</span>
+          <button type="button" class="btn-remove-promo" id="btn-remove-promo" aria-label="Remove promo code">&times;</button>
+        </div>
+      </div>
+
+      <!-- Cost Breakdown -->
+      <div class="cart-summary-table">
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="cart-subtotal">€0.00</span>
+        </div>
+        <div class="summary-row discount-row" id="discount-row" style="display: none;">
+          <span>Discount</span>
+          <span id="cart-discount">-€0.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Estimated Shipping</span>
+          <span id="cart-shipping">€0.00</span>
+        </div>
+        <div class="summary-row total-row">
+          <span>Total</span>
+          <span id="cart-grand-total">€0.00</span>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-dark btn-block btn-lg" id="btn-checkout">
+        <span>Proceed to Secure Checkout</span>
+      </button>
+      <p class="checkout-guarantee-note">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        <span>256-Bit SSL Encrypted &bull; 30-Day Atelier Return Policy</span>
+      </p>
+    </div>
+  </aside>
+
+  <!-- Product Quick View Modal -->
+  <div class="modal-overlay" id="quick-view-overlay" aria-hidden="true">
+    <div class="quick-view-modal" id="quick-view-modal" role="dialog" aria-modal="true" aria-label="Product Quick View">
+      <button type="button" class="btn-close modal-close-btn" id="btn-close-quick-view" aria-label="Close product view">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="modal-body" id="quick-view-body">
+        <!-- Content populated via app.js -->
+      </div>
+    </div>
   </div>
 
+  <!-- Search Modal -->
+  <div class="search-modal-overlay" id="search-modal-overlay" aria-hidden="true">
+    <div class="search-modal" id="search-modal" role="dialog" aria-modal="true" aria-label="Product Search">
+      <div class="search-modal-header">
+        <div class="search-input-wrapper">
+          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="search" id="live-search-input" class="live-search-input" placeholder="Search shears, horn buttons, wool thread..." autocomplete="off">
+          <button type="button" class="btn-clear-search" id="btn-clear-search" aria-label="Clear search query">&times;</button>
+        </div>
+        <button type="button" class="btn-text btn-close-search" id="btn-close-search">Cancel</button>
+      </div>
+
+      <div class="search-suggestions" id="search-suggestions">
+        <div class="suggestion-tags">
+          <span class="suggestion-label">Popular Searches:</span>
+          <button type="button" class="tag-chip" data-search-term="shears">Forged Shears</button>
+          <button type="button" class="tag-chip" data-search-term="horn">Horn Buttons</button>
+          <button type="button" class="tag-chip" data-search-term="wool">Wool Spools</button>
+          <button type="button" class="tag-chip" data-search-term="leather">Leather Tape</button>
+        </div>
+      </div>
+
+      <div class="search-results-list" id="search-results-list">
+        <!-- Injected via app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Wishlist Drawer / Modal -->
+  <div class="wishlist-drawer-overlay" id="wishlist-overlay" aria-hidden="true"></div>
+  <aside class="wishlist-drawer" id="wishlist-drawer" role="dialog" aria-modal="true" aria-label="Saved Wishlist" aria-hidden="true">
+    <div class="cart-drawer-header">
+      <div class="cart-title-row">
+        <h3 class="cart-title">Saved Wishlist</h3>
+        <span class="cart-items-counter" id="wishlist-drawer-count">(0 items)</span>
+      </div>
+      <button type="button" class="btn-close" id="btn-close-wishlist" aria-label="Close Wishlist">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="wishlist-items-container" id="wishlist-items-container">
+      <!-- Injected via app.js -->
+    </div>
+  </aside>
+
+  <!-- Toast Notification System -->
+  <div class="toast-container" id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Main JavaScript File -->
   <script src="app.js"></script>
 </body>
 </html>
